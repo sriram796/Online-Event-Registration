@@ -1,0 +1,38 @@
+$folders = @(
+    "data",
+    "k8s",
+    "public",
+    "tests"
+)
+
+$files = @(
+    "data/database.json",
+    "k8s/deployment.yaml",
+    "k8s/service.yaml",
+    "public/index.html",
+    "public/login.html",
+    "public/register.html",
+    "public/events.html",
+    "public/dashboard.html",
+    "public/admin.html",
+    "public/style.css",
+    "public/script.js",
+    "tests/event.test.js",
+    "tests/selenium.e2e.js",
+    ".gitignore",
+    "Dockerfile",
+    "Jenkinsfile",
+    "package.json",
+    "README.md",
+    "server.js"
+)
+
+foreach ($folder in $folders) {
+    New-Item -ItemType Directory -Force -Path $folder | Out-Null
+}
+
+foreach ($file in $files) {
+    New-Item -ItemType File -Force -Path $file | Out-Null
+}
+
+Write-Host "Project folders and files created successfully!"

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a class="brand" href="/">CampusEvents</a>
+    <nav>
+        <a href="/events.html">Events</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <button id="logout-button" class="link-button">Logout</button>
+    </nav>
+</header>
+
+<main class="section page-section">
+    <span class="eyebrow">ADMINISTRATION</span>
+    <h1>Admin Dashboard</h1>
+
+    <div class="admin-layout">
+
+        <section class="auth-card">
+            <h2>Create Event</h2>
+
+            <form id="event-form">
+                <label>
+                    Event Title
+                    <input name="title" required>
+                </label>
+
+                <label>
+                    Description
+                    <textarea name="description" rows="3"></textarea>
+                </label>
+
+                <label>
+                    Date
+                    <input type="date" name="date" required>
+                </label>
+
+                <label>
+                    Time
+                    <input type="time" name="time">
+                </label>
+
+                <label>
+                    Venue
+                    <input name="venue" required>
+                </label>
+
+                <label>
+                    Capacity
+                    <input type="number" name="capacity" min="1" required>
+                </label>
+
+                <label>
+                    Category
+                    <input name="category">
+                </label>
+
+                <button class="btn full" type="submit">
+                    Add Event
+                </button>
+
+                <p id="form-message" class="message"></p>
+            </form>
+        </section>
+
+        <section>
+            <h2>Registered Participants</h2>
+            <div id="participants" class="participant-list"></div>
+            <p id="page-message" class="message"></p>
+        </section>
+
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

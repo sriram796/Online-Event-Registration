@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CampusEvents</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+<header class="navbar">
+    <a class="brand" href="/">CampusEvents</a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/events.html">Events</a>
+        <a href="/register.html">Register</a>
+    </nav>
+</header>
+
+<main class="auth-wrap">
+    <section class="auth-card">
+        <span class="eyebrow">WELCOME BACK</span>
+        <h1>Sign In</h1>
+        <p class="muted">Login to manage your registrations.</p>
+
+        <form id="login-form">
+            <label>
+                Email Address
+                <input type="email" name="email" required>
+            </label>
+
+            <label>
+                Password
+                <input type="password" name="password" required>
+            </label>
+
+            <button class="btn full" type="submit">Login</button>
+
+            <p id="form-message" class="message"></p>
+        </form>
+
+        <p class="auth-switch">
+            New user?
+            <a href="/register.html">Create Account</a>
+        </p>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

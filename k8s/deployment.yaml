@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: event-registration
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: event-registration
+
+  template:
+    metadata:
+      labels:
+        app: event-registration
+
+    spec:
+      containers:
+        - name: event-registration
+
+          image: YOUR_DOCKERHUB_USERNAME/online-event-registration:latest
+
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 3000
+
+          env:
+            - name: PORT
+              value: "3000"
+
+            - name: DATA_DIR
+              value: /app/data
+
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: event-app-secret
+                  key: session-secret
+
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+
+          volumeMounts:
+            - name: event-data
+              mountPath: /app/data
+
+      volumes:
+        - name: event-data
+          persistentVolumeClaim:
+            claimName: event-data-pvc
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+metadata:
+  name: event-data-pvc
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+
+  resources:
+    requests:
+      storage: 1Gi
